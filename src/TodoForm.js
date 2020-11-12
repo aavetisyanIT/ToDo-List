@@ -20,7 +20,7 @@ export default function TodoForm({ addTodo }) {
 					onChange={handleChange}
 					margin='normal'
 					label='Add New Todo'
-					fullWidths
+					// fullWidths
 				/>
 			</form>
 		</Paper>
