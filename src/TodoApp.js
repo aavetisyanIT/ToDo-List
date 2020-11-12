@@ -9,13 +9,12 @@ import Grid from '@material-ui/core/Grid';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function TodoApp() {
-	// const { v4: uuidv4 } = require('uuid');
-	// const initialTodos = [
-	// 	{ id: uuidv4(), task: 'Clean Fishtank', completed: false },
-	// 	{ id: uuidv4(), task: 'Wash Car', completed: true },
-	// 	{ id: uuidv4(), task: 'Grow Beard', completed: false },
-	// ];
-	const [todos, setTodos] = useState([]);
+	const initialTodos = [
+		{ id: uuidv4(), task: 'Clean Fishtank', completed: false },
+		{ id: uuidv4(), task: 'Wash Car', completed: true },
+		{ id: uuidv4(), task: 'Grow Beard', completed: false },
+	];
+	const [todos, setTodos] = useState(initialTodos);
 	const addTodo = (newTodoText) => {
 		setTodos([
 			...todos,
@@ -32,6 +31,13 @@ export default function TodoApp() {
 		);
 		setTodos(updatedTodos);
 	};
+	const editTodo = (todoId, newTask) => {
+		const updatedTodos = todos.map((todo) =>
+			todo.id === todoId ? { ...todo, task: newTask } : todo,
+		);
+		setTodos(updatedTodos);
+	};
+
 	return (
 		<Paper
 			style={{
@@ -54,6 +60,7 @@ export default function TodoApp() {
 						todos={todos}
 						removeTodo={removeTodo}
 						toggleTodo={toggleTodo}
+						editTodo={editTodo}
 					/>
 				</Grid>
 			</Grid>
